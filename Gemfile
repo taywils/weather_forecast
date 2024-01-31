@@ -120,6 +120,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
 
+  gem 'rspec-file_fixtures', '~> 0.1.6'
+
   # cuprite is a pure Ruby driver (read as no Selenium/WebDriver/ChromeDriver) for Capybara.
   # GitHub: https://github.com/rubycdp/cuprite
   gem 'cuprite'
