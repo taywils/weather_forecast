@@ -7,6 +7,7 @@
 #  id                  :bigint           not null, primary key
 #  address             :string(100)
 #  average_temperature :integer
+#  date                :date
 #  highest_temperature :integer
 #  lowest_temperature  :integer
 #  zip_code            :string(10)
