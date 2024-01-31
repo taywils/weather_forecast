@@ -86,7 +86,7 @@ GEM
     benchmark (0.3.0)
     bigdecimal (3.1.6)
     bindex (0.8.1)
-    bootsnap (1.18.1)
+    bootsnap (1.18.2)
       msgpack (~> 1.2)
     builder (3.2.4)
     capybara (3.40.0)
@@ -137,6 +137,8 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     ferrum (0.14)
       addressable (~> 2.5)
       concurrent-ruby (~> 1.1)
@@ -325,6 +327,8 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    shoulda-matchers (6.1.0)
+      activesupport (>= 5.2.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -395,7 +399,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootsnap
+  bootsnap (~> 1.18.2)
   capybara
   cssbundling-rails
   cuprite
@@ -403,6 +407,7 @@ DEPENDENCIES
   dry-initializer
   dry-types
   factory_bot_rails
+  faker
   hotwire-livereload
   jbuilder
   jsbundling-rails
@@ -417,6 +422,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  shoulda-matchers (~> 6.0)
   simplecov
   solargraph
   sprockets-rails

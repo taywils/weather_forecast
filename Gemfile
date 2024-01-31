@@ -44,7 +44,7 @@ gem 'kredis'
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', require: false
+gem 'bootsnap', '~> 1.18.2', require: false
 
 # view_component is a framework for building reusable, testable & encapsulated view components in Ruby on Rails.
 # GitHub: https://github.com/github/view_component
@@ -120,9 +120,18 @@ group :test do
   # GitHub: https://github.com/rubycdp/cuprite
   gem 'cuprite'
 
+  # shoulda-matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
+  # These tests would otherwise be much longer, more complex, and error-prone.
+  # GitHub: https://github.com/thoughtbot/shoulda-matchers
+  gem 'shoulda-matchers', '~> 6.0'
+
   # simplecov is a code coverage analysis tool for Ruby. It uses Ruby's built-in Coverage library
   # to gather code coverage data, but makes processing its results much easier by providing
   # a clean API to filter, group, merge, format, and display those results.
   # GitHub: https://github.com/simplecov-ruby/simplecov
   gem 'simplecov', require: false
+
+  # faker is a library for generating fake data such as names, addresses, and phone numbers.
+  # GitHub: https://github.com/faker-ruby/faker
+  gem 'faker'
 end
