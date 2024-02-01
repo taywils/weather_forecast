@@ -65,6 +65,14 @@ gem 'dry-types'
 # GitHub: https://github.com/collectiveidea/interactor
 gem 'interactor', '~> 3.0'
 
+# zip-codes is a Ruby gem for working with US zip codes.
+# GitHub: https://github.com/dgilperez/zip-codes
+gem 'zip-codes'
+
+# Faraday is a simple, flexible HTTP client library, with support for multiple backends.
+# GitHub: https://github.com/lostisland/faraday
+gem 'faraday'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[ mri windows ]
@@ -102,8 +110,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
-  # annotate is a gem that adds a comment summarizing the current schema to the top or bottom of each of
-  # your ActiveRecord models, fixtures, factories etc.
+  # annotate adds schema summaries to ActiveRecord models, fixtures, factories, etc.
   # GitHub: https://github.com/ctran/annotate_models
   gem 'annotate'
 
@@ -120,20 +127,19 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
 
+  # rspec-file_fixtures provides file fixtures for RSpec.
+  # GitHub: https://github.com/abotalov/rspec-file_fixtures
   gem 'rspec-file_fixtures', '~> 0.1.6'
 
   # cuprite is a pure Ruby driver (read as no Selenium/WebDriver/ChromeDriver) for Capybara.
   # GitHub: https://github.com/rubycdp/cuprite
   gem 'cuprite'
 
-  # shoulda-matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
-  # These tests would otherwise be much longer, more complex, and error-prone.
+  # shoulda-matchers offers one-liners to test common Rails functionality with RSpec and Minitest.
   # GitHub: https://github.com/thoughtbot/shoulda-matchers
   gem 'shoulda-matchers', '~> 6.0'
 
-  # simplecov is a code coverage analysis tool for Ruby. It uses Ruby's built-in Coverage library
-  # to gather code coverage data, but makes processing its results much easier by providing
-  # a clean API to filter, group, merge, format, and display those results.
+  # simplecov is a Ruby tool for code coverage analysis, providing an easy-to-use API for processing results.
   # GitHub: https://github.com/simplecov-ruby/simplecov
   gem 'simplecov', require: false
 
