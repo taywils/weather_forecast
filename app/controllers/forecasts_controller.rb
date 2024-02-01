@@ -3,12 +3,12 @@
 class ForecastsController < ApplicationController
   before_action :set_forecast, only: %i[show destroy]
 
-  # GET /forecasts or /forecasts.json
+  # GET /forecasts
   def index
     @forecasts = Forecast.recent.all
   end
 
-  # GET /forecasts/1 or /forecasts/1.json
+  # GET /forecasts/1
   def show
     render :show, locals: { cached: Rails.cache.exist?(@forecast.zip_code) }
   end
@@ -16,7 +16,7 @@ class ForecastsController < ApplicationController
   # GET /forecasts/new
   def new; end
 
-  # POST /forecasts or /forecasts.json
+  # POST /forecasts
   def create
     result = read_cache_or_fetch_forecasts
 
@@ -32,7 +32,7 @@ class ForecastsController < ApplicationController
     end
   end
 
-  # DELETE /forecasts/1 or /forecasts/1.json
+  # DELETE /forecasts/1
   def destroy
     @forecast.destroy!
 
@@ -57,8 +57,7 @@ class ForecastsController < ApplicationController
   end
 
   def cache_zip_code
-    zip_code = forecast_params[:zip_code]
-    Rails.cache.write(zip_code, true, expires_in: 30.minutes)
+    Rails.cache.write(forecast_params[:zip_code], true, expires_in: 30.minutes)
   end
 
   def read_cache_or_fetch_forecasts

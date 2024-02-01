@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The WeatherParser class is responsible for parsing the raw JSON weather
+# data fetched from the API. It is part of the WeatherOrganizer interactor chain.
 class WeatherParser
   include Interactor
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The WeatherBuilder class is responsible for building the weather data object
+# from the parsed data. It is part of the WeatherOrganizer interactor chain.
 class WeatherBuilder
   include Interactor
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The WeatherFetcher class is responsible for fetching weather data from an external API.
+# It is part of the WeatherOrganizer interactor chain.
 class WeatherFetcher
   include Interactor
 
