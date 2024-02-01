@@ -1,12 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= render @forecast %>
+<div class="pb-3">
+  <%= link_to "Back to forecasts", forecasts_path, class: 'font-bold text-slate-200 text-xl transition duration-200 ease-in-out hover:text-gray-600' %>
+</div>
+
+<div class="flex justify-center">
+  <div class="flex-col">
+    <div>
+      <%= render @forecast %>
+    </div>
+  </div>
 </div>
 
 <div>
-  <%= link_to "Edit this forecast", edit_forecast_path(@forecast) %> |
-  <%= link_to "Back to forecasts", forecasts_path %>
-
-  <%= button_to "Destroy this forecast", @forecast, method: :delete %>
+  <%= button_to "Delete this forecast?", @forecast, method: :delete, class: "focus:outline-none text-white font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-red-700 hover:bg-red-800 focus:ring-red-900" %>
 </div>
