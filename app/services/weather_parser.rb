@@ -22,9 +22,11 @@ class WeatherParser
   end
 
   def extract_zip_code
-    context.zip_code = context.address.split(',').fetch(2, nil).strip
+    zip_code_regex = /\b\d{5}\b/
+    match = context.address.match(zip_code_regex)
+    raise StandardError, 'Invalid Zipcode' unless match
 
-    raise StandardError, 'Invalid Zipcode' if context.zip_code.blank?
+    context.zip_code = match[0]
   end
 
   def extract_forecast_hashes
