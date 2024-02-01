@@ -5,7 +5,7 @@ class ForecastsController < ApplicationController
 
   # GET /forecasts or /forecasts.json
   def index
-    @forecasts = Forecast.all
+    @forecasts = Forecast.recent.all
   end
 
   # GET /forecasts/1 or /forecasts/1.json

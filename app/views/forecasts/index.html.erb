@@ -3,17 +3,18 @@
 <p class="font-bold text-slate-200 text-4xl pb-10">Weather Forecast App</p>
 
 <div class="pb-10">
-  <%= link_to "Get Forecast", new_forecast_path, class: 'text-slate-200 text-xl' %>
+  <%= link_to "Get Forecast", new_forecast_path, class: 'text-slate-200 text-xl transition duration-200 ease-in-out hover:text-gray-600' %>
 </div>
 
-<p class="font-semibold text-slate-200 text-3xl underline">Recent Forecasts</p>
+<div class="pb-6">
+  <p class="font-semibold text-slate-200 text-3xl">Recent Forecasts</p>
+</div>
 
 <div id="forecasts">
   <% @forecasts.each do |forecast| %>
-    <%= render forecast %>
-    <p>
-      <%= link_to "Show this forecast", forecast %>
-    </p>
+    <div class="pb-4">
+      <%= link_to forecast.display_name, forecast, class: 'font-bold text-slate-200 text-xl transition duration-200 ease-in-out hover:text-gray-600' %>
+    </div>
   <% end %>
 </div>
 

@@ -21,4 +21,18 @@ class Forecast < ApplicationRecord
   validates :highest_temperature, presence: true, numericality: { only_integer: true }
   validates :lowest_temperature, presence: true, numericality: { only_integer: true }
   validates :zip_code, presence: true
+
+  scope :recent, -> { order(date: :desc) }
+
+  def display_name
+    split_address = address.split(',')
+    city = split_address.fetch(0, '').strip
+    state = split_address.fetch(3, '').strip
+
+    "#{city}, #{state} #{zip_code} @ #{display_short_date}"
+  end
+
+  def display_short_date
+    date.strftime('%b %d %Y')
+  end
 end

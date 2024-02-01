@@ -1,2 +1,21 @@
-<div id="<%= dom_id forecast %>">
+<div id="<%= dom_id forecast %>" class="flex text-center">
+  <div class="w-[300px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <p class="mb-3 font-normal text-xs text-gray-400"><%= forecast.display_name %></p>
+    <p class="mb-3 text-7xl font-bold tracking-tight text-white">
+      <%= forecast.average_temperature %>&#176;
+    </p>
+    <p class="mb-3 font-normal text-xl text-gray-400">Average</p>
+    <div class="flex justify-between">
+      <div>
+        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+          Low: <span class="font-semibold text-white"><%= forecast.lowest_temperature %>&#176;</span>
+        </p>
+      </div>
+      <div>
+        <p class="mb-3 font-normal text-gray-400">
+          High: <span class="font-semibold text-white "><%= forecast.highest_temperature %>&#176;</span>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
