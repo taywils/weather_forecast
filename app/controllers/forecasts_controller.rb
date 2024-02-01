@@ -9,30 +9,28 @@ class ForecastsController < ApplicationController
   end
 
   # GET /forecasts/1 or /forecasts/1.json
-  def show; end
+  def show
+    render :show, locals: { cached: Rails.cache.exist?(@forecast.zip_code) }
+  end
 
   # GET /forecasts/new
   def new; end
 
-  # GET /forecasts/1/edit
-  # def edit; end
-
   # POST /forecasts or /forecasts.json
   def create
-    result = WeatherOrganizer.call(zip_code: params.permit(:zip_code)[:zip_code])
+    result = read_cache_or_fetch_forecasts
+
+    cache_zip_code if result.success?
 
     respond_to do |format|
       if result.success?
-        format.html { redirect_to root_path, notice: 'Forecast was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Successful request!' }
       else
         flash.now[:notice] = result.error
         format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
-
-  # PATCH/PUT /forecasts/1 or /forecasts/1.json
-  # def update; end
 
   # DELETE /forecasts/1 or /forecasts/1.json
   def destroy
@@ -56,5 +54,20 @@ class ForecastsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def forecast_params
     params.permit(:zip_code)
+  end
+
+  def cache_zip_code
+    zip_code = forecast_params[:zip_code]
+    Rails.cache.write(zip_code, true, expires_in: 30.minutes)
+  end
+
+  def read_cache_or_fetch_forecasts
+    zip_code = forecast_params[:zip_code]
+
+    if Rails.cache.exist?(zip_code)
+      OpenStruct.new(success?: true, payload: zip_codes)
+    else
+      WeatherOrganizer.call(zip_code:)
+    end
   end
 end

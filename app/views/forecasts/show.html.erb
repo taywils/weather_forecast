@@ -7,7 +7,7 @@
 <div class="flex justify-center">
   <div class="flex-col">
     <div>
-      <%= render @forecast %>
+      <%= render partial: "forecasts/forecast", locals: { forecast: @forecast, cached: cached } %>
     </div>
   </div>
 </div>

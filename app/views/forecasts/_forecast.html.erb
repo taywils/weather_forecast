@@ -17,5 +17,12 @@
         </p>
       </div>
     </div>
+    <div class="text-xs">
+      <% if cached %>
+        <p class="text-gray-600">Cached Status: <span class="text-green-800">HIT</span></p>
+      <% else %>
+        <p class="text-gray-600">Cached Status: <span class="text-red-800">MISS</span></p>
+      <% end %>
+    </div>
   </div>
 </div>
