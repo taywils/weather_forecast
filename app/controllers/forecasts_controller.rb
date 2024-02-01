@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ForecastsController < ApplicationController
-  before_action :set_forecast, only: %i[show edit update destroy]
+  before_action :set_forecast, only: %i[show destroy]
 
   # GET /forecasts or /forecasts.json
   def index
@@ -12,40 +12,27 @@ class ForecastsController < ApplicationController
   def show; end
 
   # GET /forecasts/new
-  def new
-    @forecast = Forecast.new
-  end
+  def new; end
 
   # GET /forecasts/1/edit
-  def edit; end
+  # def edit; end
 
   # POST /forecasts or /forecasts.json
   def create
-    @forecast = Forecast.new(forecast_params)
+    result = WeatherOrganizer.call(zip_code: params.permit(:zip_code)[:zip_code])
 
     respond_to do |format|
-      if @forecast.save
-        format.html { redirect_to forecast_url(@forecast), notice: 'Forecast was successfully created.' }
-        format.json { render :show, status: :created, location: @forecast }
+      if result.success?
+        format.html { redirect_to root_path, notice: 'Forecast was successfully created.' }
       else
+        flash.now[:notice] = result.error
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @forecast.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /forecasts/1 or /forecasts/1.json
-  def update
-    respond_to do |format|
-      if @forecast.update(forecast_params)
-        format.html { redirect_to forecast_url(@forecast), notice: 'Forecast was successfully updated.' }
-        format.json { render :show, status: :ok, location: @forecast }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @forecast.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update; end
 
   # DELETE /forecasts/1 or /forecasts/1.json
   def destroy
@@ -62,10 +49,12 @@ class ForecastsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_forecast
     @forecast = Forecast.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, flash: { notice: 'Forecast not found' }
   end
 
   # Only allow a list of trusted parameters through.
   def forecast_params
-    params.fetch(:forecast, {})
+    params.permit(:zip_code)
   end
 end

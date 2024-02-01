@@ -1,9 +1,12 @@
-<h1>New forecast</h1>
+<% if flash[:notice] %>
+  <div class="text-red-600 font-semibold text-md">
+    <%= flash[:notice] %>
+    <p>Please try again with a valid US zip code.</p>
+  </div>
+<% end %>
+
+<div class="pb-3">
+  <%= link_to "Back to forecasts", forecasts_path, class: 'font-bold text-slate-200 text-xl transition duration-200 ease-in-out hover:text-gray-600' %>
+</div>
 
 <%= render "form", forecast: @forecast %>
-
-<br>
-
-<div>
-  <%= link_to "Back to forecasts", forecasts_path %>
-</div>

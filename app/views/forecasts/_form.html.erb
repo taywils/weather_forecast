@@ -1,17 +1,14 @@
-<%= form_with(model: forecast) do |form| %>
-  <% if forecast.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(forecast.errors.count, "error") %> prohibited this forecast from being saved:</h2>
-
-      <ul>
-        <% forecast.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with(url: forecasts_path, method: :post, class: 'max-w-sm mx-auto') do |form| %>
+  <div class="mb-5">
+    <%= form.label :zip_code, class: "block mb-2 text-sm font-medium text-white" %>
+    <%= form.text_field :zip_code,
+      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+      placeholder: "Enter a valid US zip code",
+      maxlength: 5,
+      required: true
+    %>
+  </div>
   <div>
-    <%= form.submit %>
+    <%= form.submit "New Forecast", class: "cursor-pointer focus:outline-none text-white font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-700 hover:bg-green-800 focus:ring-green-900" %>
   </div>
 <% end %>
