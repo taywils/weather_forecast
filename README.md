@@ -141,7 +141,33 @@ else
 end
 ```
 
-### Web UI Notes
+### Cache Strategy
+
+- As outlined in the description I used the suggested `30 minute` time window for TTL
+- Its never a great idea to `cache entire ActiveRecord Objects` so instead we need some serialized format or a simple `cache key`
+- I used the `Forecast.zip_code` as the cache key
+
+```ruby
+# app/controllers/forecasts_controller.rb
+
+  def cache_zip_code
+    Rails.cache.write(forecast_params[:zip_code], true, expires_in: 30.minutes)
+  end
+
+  def read_cache_or_fetch_forecasts
+    zip_code = forecast_params[:zip_code]
+
+    if Rails.cache.exist?(zip_code)
+      OpenStruct.new(success?: true, payload: zip_codes)
+    else
+      WeatherOrganizer.call(zip_code:)
+    end
+  end
+```
+
+- When the cache key is found we skip the API endpoint call and rely on Application State instead
+
+## Web UI Notes
 
 - In addition to client side validation I also took advantage of https://github.com/dgilperez/zip-codes to perform US ZipCode validation
 
