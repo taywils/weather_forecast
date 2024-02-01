@@ -1,6 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Forecasts</h1>
+<p class="font-bold text-slate-200 text-4xl pb-10">Weather Forecast App</p>
+
+<div class="pb-10">
+  <%= link_to "Get Forecast", new_forecast_path, class: 'text-slate-200 text-xl' %>
+</div>
+
+<p class="font-semibold text-slate-200 text-3xl underline">Recent Forecasts</p>
 
 <div id="forecasts">
   <% @forecasts.each do |forecast| %>
@@ -11,4 +17,3 @@
   <% end %>
 </div>
 
-<%= link_to "New forecast", new_forecast_path %>
